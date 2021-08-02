@@ -12,7 +12,7 @@ const useStopwatch = ({ autoStart = false }) => {
         setStartDate(Date.now());
     }
 
-    // resume wouldn't work, have to move the starting date or use a stopwatch to keep track of pause length
+    // TODO: move the starting date or use a stopwatch to keep track of pause length
     const pause = () => {
         setIsRunning(false);
     }
