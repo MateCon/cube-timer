@@ -27,21 +27,24 @@ const Stopwatch = () => {
         if(isSpacePressed) {
             console.log('press')
             if(!showInspection) {
-                setShowInspection(true);
-                setColor('green');
+                if(!isRunning) {
+                    setShowInspection(true);
+                    setColor('green');
+                } else {
+                    inspection.
+                    pause();
+                }
             } else {
                 helperTimer.start();
                 setColor('yellow');
             }
         } else {
-            console.log('release')
             if(showInspection) {
                 if(!inspection.isRunning) {
                     inspection.start();
                     setColor('red');
                 } else {
                     if(color === 'green') {
-                        console.log('Start! Wait what?');
                         setColor('black');
                         setShowInspection(false);
                         start();
@@ -58,7 +61,7 @@ const Stopwatch = () => {
         if(helperTimer.hundredths >= 30 && showInspection) {
             setColor('green');
         }
-    }, [helperTimer]);
+    }, [helperTimer.hundredths]);
   
     return (
       <div id="stopwatch" onKeyPressCapture={handleKeyDown} onKeyUpCapture={handleKeyUp} tabIndex="0">
