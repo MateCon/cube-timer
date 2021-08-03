@@ -27,7 +27,7 @@ const useStopwatch = ({ autoStart = false }) => {
     useEffect(() => {
         let interval = setInterval(() => {
             if(isRunning) {
-                var diff = Date.now() - startDate
+                var diff = Date.now() - startDate;
                 const newTimes = { "hundredths": Math.floor(diff / 10)  };
     
                 while(newTimes.hundredths > 100) {
@@ -53,7 +53,7 @@ const useStopwatch = ({ autoStart = false }) => {
         });
     }, [isRunning]);
 
-    return [minutes, seconds, hundredths, start, pause, reset];
+    return [{ minutes, seconds, hundredths, start, pause, reset, isRunning }];
 }
 
 export default useStopwatch;
