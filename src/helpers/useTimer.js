@@ -11,15 +11,13 @@ const useTimer = ( initialLength = 15 ) => {
         setIsRunning(true);
     }
 
-    useEffect(() => {
-        if(seconds === 0) {
-            setIsRunning(false);
-        }
-    }, [seconds]);
+    const stop = () => {
+        setIsRunning(false); 
+    }
 
-    useEffect(() => {
-        setSeconds(length);
-    }, [length]);
+    const reset = () => {
+        setSeconds(initialLength);
+    }
 
     useEffect(() => {
         if(isRunning) {
@@ -34,7 +32,7 @@ const useTimer = ( initialLength = 15 ) => {
         }
     }, [isRunning]);
 
-    return [{ seconds, isRunning, setLength, start }];
+    return [{ seconds, isRunning, setLength, start, stop, reset }];
 }
 
 export default useTimer;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStopwatch from '../helpers/useStopwatch';
 import useTimer from '../helpers/useTimer';
-import { format_time } from '../helpers/helper-methods';
+import { format_time, format_inspection } from '../helpers/helper-methods';
 
 const Stopwatch = () => {
     const [{ minutes, seconds, hundredths, start, pause, reset, isRunning }] = useStopwatch({ autoStart: false });
@@ -29,9 +29,9 @@ const Stopwatch = () => {
             if(!showInspection) {
                 if(!isRunning) {
                     setShowInspection(true);
+                    inspection.reset();
                     setColor('green');
                 } else {
-                    inspection.
                     pause();
                 }
             } else {
@@ -47,6 +47,7 @@ const Stopwatch = () => {
                     if(color === 'green') {
                         setColor('black');
                         setShowInspection(false);
+                        inspection.stop();
                         start();
                     } else {
                         setColor('red');
@@ -58,7 +59,7 @@ const Stopwatch = () => {
     }, [isSpacePressed]);
 
     useEffect(() => {
-        if(helperTimer.hundredths >= 30 && showInspection) {
+        if(helperTimer.hundredths >= 30 && showInspection && color !== 'red') {
             setColor('green');
         }
     }, [helperTimer.hundredths]);
@@ -68,7 +69,7 @@ const Stopwatch = () => {
         <br></br>
         {
             showInspection
-                ? <p style={{'color': color}}>{inspection.seconds}</p>
+                ? <p style={{'color': color}}>{format_inspection(inspection.seconds)}</p>
                 : <p style={{'color': color}}>{format_time(minutes, seconds, hundredths)}</p>
         }
       </div>
