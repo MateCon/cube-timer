@@ -30,13 +30,13 @@ const useStopwatch = ({ autoStart = false }) => {
                 var diff = Date.now() - startDate;
                 const newTimes = { "hundredths": Math.floor(diff / 10)  };
     
-                while(newTimes.hundredths > 100) {
+                while(newTimes.hundredths >= 100) {
                     newTimes.hundredths -= 100;
                 }
     
                 newTimes["seconds"] = Math.floor(diff / 1000); 
     
-                while(newTimes.seconds > 60) {
+                while(newTimes.seconds >= 60) {
                     newTimes.seconds -= 60;
                 }
     

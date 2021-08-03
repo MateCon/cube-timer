@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStopwatch from '../helpers/useStopwatch';
 import useTimer from '../helpers/useTimer';
+import { format_time } from '../helpers/helper-methods';
 
 const Stopwatch = () => {
     const [{ minutes, seconds, hundredths, start, pause, reset, isRunning }] = useStopwatch({ autoStart: false });
@@ -65,7 +66,7 @@ const Stopwatch = () => {
         {
             showInspection
                 ? <p style={{'color': color}}>{inspection.seconds}</p>
-                : <p style={{'color': color}}>{`${minutes}:${seconds}.${hundredths}`}</p>
+                : <p style={{'color': color}}>{format_time(minutes, seconds, hundredths)}</p>
         }
       </div>
     );
