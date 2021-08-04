@@ -6,6 +6,4 @@ export const format_time = (minutes, seconds, hundreads) => {
     return new_min + ':' + new_sec + '.' + new_hun;
 }
 
-export const format_inspection = seconds => {
-    return seconds < -2 && 'DNF' || seconds < 0 && '+2' || seconds;
-}
+export const format_inspection = seconds => seconds < -2 && 'DNF' || seconds < 0 && '+2' || seconds;
