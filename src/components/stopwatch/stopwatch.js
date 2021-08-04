@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useStopwatch from '../helpers/useStopwatch';
-import useTimer from '../helpers/useTimer';
-import { format_time, format_inspection } from '../helpers/helper-methods';
+import useStopwatch from '../../helpers/useStopwatch';
+import useTimer from '../../helpers/useTimer';
+import { format_time, format_inspection } from '../../helpers/helper-methods';
+import './stopwatch.scss';
 
 const Stopwatch = () => {
     const [{ minutes, seconds, hundredths, start, pause, reset, isRunning }] = useStopwatch({ autoStart: false });

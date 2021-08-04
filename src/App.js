@@ -1,5 +1,5 @@
 import React from 'react';
-import Stopwatch from './components/stopwatch';
+import Stopwatch from './components/stopwatch/stopwatch';
 import './App.css';
 
 const App = () => {
