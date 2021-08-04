@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-#app {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#stopwatch {
-  font-family: 'Roboto Mono', monospace;
-  width: 100vw;
-  height: 100vh;
-  font-size: 24px;
+#app {
+  text-align: center;
+  background-color: black;
 }

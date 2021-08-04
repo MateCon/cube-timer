@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useStopwatch from '../../helpers/useStopwatch';
 import useTimer from '../../helpers/useTimer';
 import { format_time, format_inspection } from '../../helpers/helper-methods';
-import './stopwatch.scss';
+import './stopwatch-style.scss';
 
 const Stopwatch = () => {
     const [{ minutes, seconds, hundredths, start, pause, reset, isRunning }] = useStopwatch({ autoStart: false });
@@ -10,7 +10,7 @@ const Stopwatch = () => {
     const [helperTimer] = useStopwatch({ autoStart: false });
     const [showInspection, setShowInspection] = useState(false);
     const [isSpacePressed, setIsSpacePressed] = useState(false);
-    const [color, setColor] = useState('black');
+    const [color, setColor] = useState('white');
 
     const handleKeyDown = event => {
         if(event.charCode === 32) {
@@ -26,7 +26,6 @@ const Stopwatch = () => {
 
     useEffect(() => {
         if(isSpacePressed) {
-            console.log('press')
             if(!showInspection) {
                 if(!isRunning) {
                     setShowInspection(true);
@@ -46,7 +45,7 @@ const Stopwatch = () => {
                     setColor('red');
                 } else {
                     if(color === 'green') {
-                        setColor('black');
+                        setColor('white');
                         setShowInspection(false);
                         inspection.stop();
                         start();
@@ -67,7 +66,6 @@ const Stopwatch = () => {
   
     return (
       <div id="stopwatch" onKeyPressCapture={handleKeyDown} onKeyUpCapture={handleKeyUp} tabIndex="0">
-        <br></br>
         {
             showInspection
                 ? <p style={{'color': color}}>{format_inspection(inspection.seconds)}</p>

@@ -46,7 +46,7 @@ const useStopwatch = ({ autoStart = false }) => {
                 setSeconds(newTimes.seconds);
                 setHundredths(newTimes.hundredths);
             }
-        }, 32);
+        }, 1);
 
         return (() => {
             clearInterval(interval);
