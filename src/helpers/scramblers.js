@@ -1,6 +1,6 @@
 const addDirection = move => {
 	const direction = ['2', "'", ''][Math.floor(Math.random() * 3)];
-	return direction === '2' && '2' + move || direction === "'" && move + "'" || move;
+	return direction === '2' && move + '2' || direction === "'" && move + "'" || move;
 }
 
 export const scrambler3x3 = move_count => {
