@@ -14,4 +14,11 @@
   height: 100vh;
   text-align: center;
   background-color: black;
+  display: grid; 
+  grid-template-columns: auto 90%; 
+  grid-template-rows: auto 90%; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "a a"
+    "b c"; 
 }

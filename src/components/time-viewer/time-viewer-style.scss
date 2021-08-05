@@ -1,0 +1,28 @@
+#time-viewer {
+    width: auto;
+    height: 100%;
+    grid-area: b;
+    border-right: 2px solid white;
+    color: white;
+
+    > div {
+        display: flex;
+
+        :nth-child(1) {
+            width: 30%;
+            border-right: 2px solid white;
+        }
+
+        > div {
+            width: 100%;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    > :last-child {
+        border-bottom: 2px solid white;
+    }
+}
