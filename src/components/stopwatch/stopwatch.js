@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStopwatch from '../../helpers/useStopwatch';
 import useTimer from '../../helpers/useTimer';
-import { format_time, format_inspection } from '../../helpers/helper-methods';
+import { format_time, format_inspection, get_penalty } from '../../helpers/helper-methods';
 import './stopwatch-style.scss';
 
 const Stopwatch = ({setLastSolve}) => {
@@ -11,6 +11,7 @@ const Stopwatch = ({setLastSolve}) => {
     const [showInspection, setShowInspection] = useState(false);
     const [isSpacePressed, setIsSpacePressed] = useState(false);
     const [color, setColor] = useState('white');
+    const [penalty, setPenalty] = useState('');
 
     const handleKeyDown = event => {
         if(event.charCode === 32) {
@@ -33,7 +34,10 @@ const Stopwatch = ({setLastSolve}) => {
                     setColor('green');
                 } else {
                     pause();
-                    setLastSolve(format_time(minutes, seconds, hundredths));
+                    setLastSolve({
+                        time: format_time(minutes, seconds, hundredths),
+                        penalty
+                    });
                 }
             } else {
                 helperTimer.start();
@@ -46,6 +50,7 @@ const Stopwatch = ({setLastSolve}) => {
                     setColor('red');
                 } else {
                     if(color === 'green') {
+                        setPenalty(get_penalty(inspection.seconds));
                         setColor('white');
                         setShowInspection(false);
                         inspection.stop();

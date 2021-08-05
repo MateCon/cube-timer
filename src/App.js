@@ -9,9 +9,9 @@ const App = () => {
   const [lastSolve, setLastSolve] = useState({});
 
   useEffect(() => {
-    console.log(times);
+    console.table(times);
     if(lastSolve.time === undefined) return;
-    times.push(lastSolve);
+    setTimes([...times, lastSolve]);
   }, [lastSolve]);
 
   return (

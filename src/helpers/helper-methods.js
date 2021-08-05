@@ -7,3 +7,4 @@ export const format_time = (minutes, seconds, hundreads) => {
 }
 
 export const format_inspection = seconds => seconds < -2 && 'DNF' || seconds < 0 && '+2' || seconds;
+export const get_penalty = seconds => seconds < -2 && 'DNF' || seconds < 0 && '+2' || '';
