@@ -5,7 +5,7 @@ const addDirection = move => {
 
 export const scrambler3x3 = move_count => {
 	const getMove = last_move => {
-		const options = ['l', 'r', 'u', 'd', 'f', 'b'];
+		const options = ['L', 'R', 'U', 'D', 'F', 'B'];
 		let move = options[Math.floor(Math.random() * options.length)];
 		while(last_move === move) {
 			move = options[Math.floor(Math.random() * options.length)];
