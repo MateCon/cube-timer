@@ -4,7 +4,7 @@ import useTimer from '../../helpers/useTimer';
 import { format_time, format_inspection } from '../../helpers/helper-methods';
 import './stopwatch-style.scss';
 
-const Stopwatch = () => {
+const Stopwatch = ({setLastSolve}) => {
     const [{ minutes, seconds, hundredths, start, pause, reset, isRunning }] = useStopwatch({ autoStart: false });
     const [inspection] = useTimer();
     const [helperTimer] = useStopwatch({ autoStart: false });
@@ -33,6 +33,7 @@ const Stopwatch = () => {
                     setColor('green');
                 } else {
                     pause();
+                    setLastSolve(format_time(minutes, seconds, hundredths));
                 }
             } else {
                 helperTimer.start();
