@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidV4 } from 'uuid';
 import useStopwatch from '../../helpers/useStopwatch';
 import useTimer from '../../helpers/useTimer';
 import { format_time, format_inspection, get_penalty } from '../../helpers/helper-methods';
@@ -36,7 +37,8 @@ const Stopwatch = ({setLastSolve}) => {
                     pause();
                     setLastSolve({
                         time: format_time(minutes, seconds, hundredths),
-                        penalty
+                        penalty,
+                        id: uuidV4()
                     });
                 }
             } else {

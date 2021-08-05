@@ -7,7 +7,7 @@ const TimeViewer = ({times}) => {
     return <div id='time-viewer'>
         {
             times.map((data, index) => {
-                return <div key={index}>
+                return <div key={data.id}>
                     <div>{index + 1}</div>
                     <div>{getTime(data['time'], data['penalty'])}</div>
                 </div>
