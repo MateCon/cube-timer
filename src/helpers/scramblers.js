@@ -3,7 +3,7 @@ const addDirection = move => {
 	return direction === '2' && '2' + move || direction === "'" && move + "'" || move;
 }
 
-const scrambler3x3 = move_count => {
+export const scrambler3x3 = move_count => {
 	const getMove = last_move => {
 		const options = ['l', 'r', 'u', 'd', 'f', 'b'];
 		let move = options[Math.floor(Math.random() * options.length)];
