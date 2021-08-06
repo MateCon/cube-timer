@@ -22,5 +22,3 @@ export const scrambler3x3 = move_count => {
 
 	return result;
 }
-
-console.log(scrambler3x3(20));

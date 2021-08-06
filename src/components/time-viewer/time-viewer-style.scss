@@ -16,9 +16,8 @@
         > div {
             width: 100%;
             padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: grid;
+            place-items: center;
         }
     }
 
