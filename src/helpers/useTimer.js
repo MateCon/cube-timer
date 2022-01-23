@@ -20,16 +20,15 @@ const useTimer = (initialLength = 15) => {
 	};
 
 	useEffect(() => {
-		if (isRunning) {
-			let interval = setInterval(() => {
-				var diff = Date.now() - startDate;
-				setSeconds(initialLength - Math.floor(diff / 1000));
-			}, 200);
+		if (!isRunning) return;
+		let interval = setInterval(() => {
+			var diff = Date.now() - startDate;
+			setSeconds(initialLength - Math.floor(diff / 1000));
+		}, 10);
 
-			return () => {
-				clearInterval(interval);
-			};
-		}
+		return () => {
+			clearInterval(interval);
+		};
 	}, [isRunning, initialLength, startDate]);
 
 	return [{ seconds, isRunning, setLength, start, stop, reset }];
