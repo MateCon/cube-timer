@@ -10,8 +10,8 @@ const App = () => {
 
 	useEffect(() => {
 		if (lastSolve.time === undefined) return;
-		setTimes([...times, lastSolve]);
-	}, [lastSolve]);
+		setTimes((prev) => [...prev, lastSolve]);
+	}, [lastSolve, setTimes]);
 
 	return (
 		<div id='app'>
