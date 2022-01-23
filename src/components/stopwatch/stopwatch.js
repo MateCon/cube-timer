@@ -75,7 +75,7 @@ const Stopwatch = ({ setLastSolve }) => {
 		if (helperTimer.hundredths >= 30 && showInspection && color !== "red") {
 			setColor("green");
 		}
-	}, [helperTimer.hundredths]);
+	}, [helperTimer.hundredths, showInspection, color]);
 
 	return (
 		<div
