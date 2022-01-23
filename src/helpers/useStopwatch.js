@@ -50,7 +50,7 @@ const useStopwatch = ({ autoStart = false }) => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [isRunning]);
+	}, [isRunning, startDate]);
 
 	return [{ minutes, seconds, hundredths, start, pause, reset, isRunning }];
 };
