@@ -6,6 +6,7 @@ import {
 	format_time,
 	format_inspection,
 	get_penalty,
+	format_time_with_zeroes,
 } from "../../helpers/helper-methods";
 import "./stopwatch-style.scss";
 
@@ -17,8 +18,10 @@ const Stopwatch = ({ setLastSolve }) => {
 	const [showInspection, setShowInspection] = useState(false);
 	const [color, setColor] = useState("white");
 	const [penalty, setPenalty] = useState("");
+	const [canStart, setCanStart] = useState(true);
 
 	const onSpacePress = () => {
+		console.log(isRunning);
 		if (color === "white") inspection.reset();
 		if (showInspection && color === "red") {
 			setColor("yellow");
@@ -26,6 +29,7 @@ const Stopwatch = ({ setLastSolve }) => {
 			return;
 		}
 		if (!isRunning) {
+			if (!canStart) return;
 			setShowInspection(true);
 			setColor("green");
 		} else {
@@ -35,10 +39,14 @@ const Stopwatch = ({ setLastSolve }) => {
 				penalty,
 				id: uuidV4(),
 			});
+			setCanStart(false);
 		}
 	};
 
 	const onSpaceRelease = () => {
+		if (!canStart) {
+			setCanStart(true);
+		}
 		if (!showInspection) return;
 		if (!inspection.isRunning) {
 			inspection.start();
@@ -82,7 +90,7 @@ const Stopwatch = ({ setLastSolve }) => {
 				<p style={{ color }}>{format_inspection(inspection.seconds)}</p>
 			) : (
 				<p style={{ color }}>
-					{format_time(minutes, seconds, hundredths)}
+					{format_time_with_zeroes(minutes, seconds, hundredths)}
 				</p>
 			)}
 		</div>
