@@ -1,6 +1,18 @@
 import { useState, useEffect } from "react";
 
-const useStopwatch = ({ autoStart = false }) => {
+const useStopwatch = ({
+	autoStart = false,
+}: {
+	autoStart: boolean;
+}): {
+	minutes: number;
+	seconds: number;
+	hundredths: number;
+	start: () => void;
+	pause: () => void;
+	reset: () => void;
+	isRunning: boolean;
+} => {
 	const [isRunning, setIsRunning] = useState(autoStart);
 	const [startDate, setStartDate] = useState(Date.now());
 	const [minutes, setMinutes] = useState(0);
@@ -27,7 +39,11 @@ const useStopwatch = ({ autoStart = false }) => {
 		let interval = setInterval(() => {
 			if (isRunning) {
 				var diff = Date.now() - startDate;
-				const newTimes = { hundredths: Math.floor(diff / 10) };
+				const newTimes = {
+					hundredths: Math.floor(diff / 10),
+					minutes: -1,
+					seconds: -1,
+				};
 
 				while (newTimes.hundredths >= 100) {
 					newTimes.hundredths -= 100;
@@ -52,7 +68,7 @@ const useStopwatch = ({ autoStart = false }) => {
 		};
 	}, [isRunning, startDate]);
 
-	return [{ minutes, seconds, hundredths, start, pause, reset, isRunning }];
+	return { minutes, seconds, hundredths, start, pause, reset, isRunning };
 };
 
 export default useStopwatch;

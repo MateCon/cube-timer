@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEventHandler } from "react";
 import { v4 as uuidV4 } from "uuid";
-import useStopwatch from "../../helpers/useStopwatch";
-import useTimer from "../../helpers/useTimer";
+import useStopwatch from "../helpers/useStopwatch";
+import useTimer from "../helpers/useTimer";
 import {
 	format_time,
 	format_inspection,
 	get_penalty,
 	format_time_with_zeroes,
-} from "../../helpers/helper-methods";
-import "./stopwatch-style.scss";
+} from "../helpers/helper-methods";
 
-const Stopwatch = ({ setLastSolve }) => {
-	const [{ minutes, seconds, hundredths, start, pause, isRunning }] =
+const Stopwatch = ({ setLastSolve }: { setLastSolve: Function }) => {
+	const { minutes, seconds, hundredths, start, pause, isRunning } =
 		useStopwatch({ autoStart: false });
-	const [inspection] = useTimer();
-	const [helperTimer] = useStopwatch({ autoStart: false });
+	const inspection = useTimer();
+	const helperTimer = useStopwatch({ autoStart: false });
 	const [showInspection, setShowInspection] = useState(false);
 	const [color, setColor] = useState("white");
 	const [penalty, setPenalty] = useState("");
@@ -35,7 +34,8 @@ const Stopwatch = ({ setLastSolve }) => {
 		} else {
 			pause();
 			setLastSolve({
-				time: format_time(minutes, seconds, hundredths),
+				time: { minutes, seconds, hundredths },
+				formatted_time: format_time(minutes, seconds, hundredths),
 				penalty,
 				id: uuidV4(),
 			});
@@ -65,11 +65,11 @@ const Stopwatch = ({ setLastSolve }) => {
 		}
 	};
 
-	const handleKeyDown = (event) => {
+	const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
 		if (event.charCode === 32) onSpacePress();
 	};
 
-	const handleKeyUp = (event) => {
+	const handleKeyUp: KeyboardEventHandler<HTMLDivElement> = (event) => {
 		if (event.charCode === 0) onSpaceRelease();
 	};
 
@@ -81,15 +81,15 @@ const Stopwatch = ({ setLastSolve }) => {
 
 	return (
 		<div
-			id='stopwatch'
 			onKeyPressCapture={handleKeyDown}
 			onKeyUpCapture={handleKeyUp}
-			tabIndex='0'
+			tabIndex={0}
+			className="absolute w-full h-full grid place-items-center"
 		>
 			{showInspection ? (
-				<p style={{ color }}>{format_inspection(inspection.seconds)}</p>
+				<p style={{ color }} className="text-8xl timer">{format_inspection(inspection.seconds)}</p>
 			) : (
-				<p style={{ color }}>
+				<p style={{ color }} className="text-8xl timer">
 					{format_time_with_zeroes(minutes, seconds, hundredths)}
 				</p>
 			)}

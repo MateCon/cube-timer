@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-const useTimer = (initialLength = 15) => {
-	const [length, setLength] = useState(initialLength);
-	const [startDate, setStartDate] = useState(Date.now());
-	const [seconds, setSeconds] = useState(initialLength);
-	const [isRunning, setIsRunning] = useState(false);
+const useTimer = (initialLength: number = 15) => {
+	const [length, setLength] = useState<number>(initialLength);
+	const [startDate, setStartDate] = useState<number>(Date.now());
+	const [seconds, setSeconds] = useState<number>(initialLength);
+	const [isRunning, setIsRunning] = useState<boolean>(false);
 
 	const start = () => {
 		setStartDate(Date.now());
@@ -31,7 +31,7 @@ const useTimer = (initialLength = 15) => {
 		};
 	}, [isRunning, initialLength, startDate]);
 
-	return [{ seconds, isRunning, setLength, start, stop, reset }];
+	return { seconds, isRunning, setLength, start, stop, reset };
 };
 
 export default useTimer;

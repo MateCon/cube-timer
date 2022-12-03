@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:regular,500,700);
+
+@tailwind base;
+
+@layer base {
+	.timer {
+		font-family: "Fira Mono";
+	}
+
+	div:focus {
+		outline: 0;
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
